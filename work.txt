@@ -1,0 +1,19 @@
+csv_data = pd.read_csv("src/0605.csv", encoding="utf-8")
+d_arr = csv_data.values
+lab = csv_data.columns
+
+# 处理数据
+k_sum = [sum(x) for x in d_arr.T]
+max_index = []
+for val,item in zip(k_sum,lab):
+    if val==0:
+        max_index.append(item)
+
+csv_data.head()
+csv_data['Unnamed: 0'].unique()
+csv_data = csv_data.drop(max_index, axis=1)    #丢弃不变为零的列
+cor = csv_data.corr()
+print(cor)
+train_relevant_features = cor[abs(cor['xxx']) >= 0.1]     #1：ECU C类故障.1
+list_relevant_features = train_relevant_features.index
+csv_data = csv_data[list_relevant_features]

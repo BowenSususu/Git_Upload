@@ -1,0 +1,2 @@
+This file will describe colors.
+Red is the first color in rainbow.
